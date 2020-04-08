@@ -4,7 +4,7 @@
 # or copy at http://opensource.org/licenses/MIT)
 
 cmake_minimum_required(VERSION 2.8.12) # first version with add_compile_options()
-project(CppSkeleton CXX)
+project(LeadIt CXX)
 
 # Verbose Makefile
 #set (CMAKE_VERBOSE_MAKEFILE ON)
@@ -46,12 +46,12 @@ endif (MSVC)
 
 
 # Link to googletest unit-test suite.
-option(CPPSKELETON_RUN_TESTS "Run googletest unit-test suite." ON)
-if (CPPSKELETON_RUN_TESTS)
+option(LEADIT_RUN_TESTS "Run googletest unit-test suite." ON)
+if (LEADIT_RUN_TESTS)
     # add the subdirectory containing the CMakeLists.txt for the googletest library
     add_subdirectory(lib/googletest)
     include_directories("${PROJECT_SOURCE_DIR}/lib/googletest/googletest/include")
-endif (CPPSKELETON_RUN_TESTS)
+endif (LEADIT_RUN_TESTS)
 
 
 # Enable maximum Warning level for our own code (after the googletest lib)
@@ -105,15 +105,15 @@ source_group(doc     FILES ${doc_files})
 include_directories("${PROJECT_SOURCE_DIR}/src")
 
 # add the application executable
-add_executable(CppSkeleton ${source_files} ${doc_files} ${script_files})
-target_link_libraries(CppSkeleton ${SYSTEM_LIBRARIES})
+add_executable(LeadIt ${source_files} ${doc_files} ${script_files})
+target_link_libraries(LeadIt ${SYSTEM_LIBRARIES})
 
 
 # Optional additional targets:
 
 # Run cpplint C++ StyleGuide linter tool.
-option(CPPSKELETON_RUN_CPPLINT "Run cpplint.py tool for Google C++ StyleGuide." ON)
-if (CPPSKELETON_RUN_CPPLINT)
+option(LEADIT_RUN_CPPLINT "Run cpplint.py tool for Google C++ StyleGuide." ON)
+if (LEADIT_RUN_CPPLINT)
     find_package(PythonInterp 2.6)
     if (PYTHONINTERP_FOUND)
         set(CPPLINT_ARG_LINELENGTH "--linelength=120")
@@ -124,21 +124,21 @@ if (CPPSKELETON_RUN_CPPLINT)
                 ALL
                 COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/cpplint/cpplint.py ${CPPLINT_ARG_OUTPUT} ${CPPLINT_ARG_LINELENGTH} ${CPPLINT_ARG_VERBOSE} ${source_files}
             )
-            message(STATUS "CPPSKELETON_RUN_CPPLINT        ON")
+            message(STATUS "LEADIT_RUN_CPPLINT        ON")
         else ()
             message(STATUS "cpplint submodule missing")
         endif ()
     else ()
         message(STATUS "Python not found, not runing cpplint")
     endif (PYTHONINTERP_FOUND)
-else (CPPSKELETON_RUN_CPPLINT)
-    message(STATUS "CPPSKELETON_RUN_CPPLINT        OFF")
-endif (CPPSKELETON_RUN_CPPLINT)
+else (LEADIT_RUN_CPPLINT)
+    message(STATUS "LEADIT_RUN_CPPLINT        OFF")
+endif (LEADIT_RUN_CPPLINT)
 
 # Run cppcheck C++ static analysis tool.
-option(CPPSKELETON_RUN_CPPCHECK "Run cppcheck C++ static analysis tool." ON)
-if (CPPSKELETON_RUN_CPPCHECK)
-    find_program(CPPCHECK_EXECUTABLE NAMES cppcheck)
+option(LEADIT_RUN_CPPCHECK "Run cppcheck C++ static analysis tool." ON)
+if (LEADIT_RUN_CPPCHECK)
+    find_program(CPPCHECK_EXECUTABLE NAMES lib/cppcheck)
     if (CPPCHECK_EXECUTABLE)
         # add a cppcheck target to the "all" target
         add_custom_target(cppcheck
@@ -150,13 +150,13 @@ if (CPPSKELETON_RUN_CPPCHECK)
     else (CPPCHECK_EXECUTABLE)
         message(STATUS "Could NOT find cppcheck")
     endif (CPPCHECK_EXECUTABLE)
-else (CPPSKELETON_RUN_CPPCHECK)
-    message(STATUS "CPPSKELETON_RUN_CPPCHECK       OFF")
-endif (CPPSKELETON_RUN_CPPCHECK)
+else (LEADIT_RUN_CPPCHECK)
+    message(STATUS "LEADIT_RUN_CPPCHECK       OFF")
+endif (LEADIT_RUN_CPPCHECK)
 
 # Run Doxygen C++ documentation tool.
-option(CPPSKELETON_RUN_DOXYGEN "Run Doxygen C++ documentation tool." ON)
-if (CPPSKELETON_RUN_DOXYGEN)
+option(LEADIT_RUN_DOXYGEN "Run Doxygen C++ documentation tool." ON)
+if (LEADIT_RUN_DOXYGEN)
     find_package(Doxygen)
     if (DOXYGEN_FOUND)
         # add a Doxygen target to the "all" target
@@ -166,13 +166,13 @@ if (CPPSKELETON_RUN_DOXYGEN)
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         )
     endif (DOXYGEN_FOUND)
-else (CPPSKELETON_RUN_DOXYGEN)
-    message(STATUS "CPPSKELETON_RUN_DOXYGEN        OFF")
-endif (CPPSKELETON_RUN_DOXYGEN)
+else (LEADIT_RUN_DOXYGEN)
+    message(STATUS "LEADIT_RUN_DOXYGEN        OFF")
+endif (LEADIT_RUN_DOXYGEN)
 
 # Run CLOC line counting tool.
-option(CPPSKELETON_RUN_CLOC "Run CLOC line counting tool." ON)
-if (CPPSKELETON_RUN_CLOC)
+option(LEADIT_RUN_CLOC "Run CLOC line counting tool." ON)
+if (LEADIT_RUN_CLOC)
     find_program(CLOC_EXECUTABLE cloc DOC "CLOC tool for counting lines of code.")
     if (CLOC_EXECUTABLE)
         # add a cloc target to the "all" target
@@ -184,12 +184,12 @@ if (CPPSKELETON_RUN_CLOC)
     else (CLOC_EXECUTABLE)
         message(STATUS "Could NOT find cloc")
     endif (CLOC_EXECUTABLE)
-else (CPPSKELETON_RUN_CLOC)
+else (LEADIT_RUN_CLOC)
     message(STATUS "RUN_CLOC 		           OFF")
-endif (CPPSKELETON_RUN_CLOC)
+endif (LEADIT_RUN_CLOC)
 
 # Run googletest unit-test suite.
-if (CPPSKELETON_RUN_TESTS)
+if (LEADIT_RUN_TESTS)
     # add the test executable
     add_executable(TestSkeleton
         src/Utils/Time.cpp src/Utils/Time.h src/Utils/Time_test.cpp)
@@ -199,11 +199,11 @@ if (CPPSKELETON_RUN_TESTS)
     enable_testing()
 
     # does the application runs
-    add_test(ApplicationRuns CppSkeleton)
+    add_test(ApplicationRuns LeadIt)
 
     # does the tests pass
     add_test(TestsPass TestSkeleton)
-else (CPPSKELETON_RUN_TESTS)
-    message(STATUS "CPPSKELETON_RUN_TESTS          OFF")
-endif (CPPSKELETON_RUN_TESTS)
+else (LEADIT_RUN_TESTS)
+    message(STATUS "LEADIT_RUN_TESTS          OFF")
+endif (LEADIT_RUN_TESTS)
 

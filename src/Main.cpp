@@ -1,9 +1,10 @@
 /**
  * @file    Main.cpp
- * @ingroup CppSkeleton
+ * @ingroup LeadIt
  * @brief   A simple skeleton for C++ development with CMake and Google Test.
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
+ * Copyright (c) 2020 Yoshi Jäger (yoshi@jaeger.berlin)
  *
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
