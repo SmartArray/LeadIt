@@ -4,17 +4,20 @@ LeadIt
 [![Travis CI Linux Build Status](https://travis-ci.org/SmartArray/LeadIt.svg)](https://travis-ci.org/SmartArray/LeadIt "Travis CI Linux Build Status")
 [![AppVeyor Windows Build status](https://ci.appveyor.com/api/projects/status/github/SmartArray/LeadIt?svg=true)](https://ci.appveyor.com/project/SmartArray/LeadIt "AppVeyor Windows Build status")
 
-""" Extreme Fast Leaderboard """
+> High Performance Scoreboard / Leaderboard that runs as a REST Service.
 
 Copyright (c) 2020 Yoshi Jäger (yoshi@jaeger.berlin)
 
-## Prerequisites
+## Development Prerequisites
 
 ### Install cloc
 (Statistics utility to count lines of code)
 
 ### Install cppcheck
 (Static analysis of C and C++ code)
+
+### Install Doxygen
+(Documentation Generator)
 
 ## Building & testing with CMake
 

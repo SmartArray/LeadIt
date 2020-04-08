@@ -89,6 +89,7 @@ else (MSVC)
     endif (CMAKE_COMPILER_IS_GNUCXX)
 endif (MSVC)
 
+add_subdirectory(lib/cpp-btree)
 
 # List all sources/headers files
 set(source_files
