@@ -49,8 +49,8 @@ endif (MSVC)
 option(CPPSKELETON_RUN_TESTS "Run googletest unit-test suite." ON)
 if (CPPSKELETON_RUN_TESTS)
     # add the subdirectory containing the CMakeLists.txt for the googletest library
-    add_subdirectory(googletest)
-    include_directories("${PROJECT_SOURCE_DIR}/googletest/googletest/include")
+    add_subdirectory(lib/googletest)
+    include_directories("${PROJECT_SOURCE_DIR}/lib/googletest/googletest/include")
 endif (CPPSKELETON_RUN_TESTS)
 
 
@@ -97,7 +97,7 @@ source_group(scripts FILES ${script_files})
 # List doc files
 set(doc_files
  ${CMAKE_SOURCE_DIR}/README.md
- ${CMAKE_SOURCE_DIR}/LICENSE.txt
+ ${CMAKE_SOURCE_DIR}/LICENSE
 )
 source_group(doc     FILES ${doc_files})
 
@@ -118,7 +118,7 @@ if (CPPSKELETON_RUN_CPPLINT)
     if (PYTHONINTERP_FOUND)
         set(CPPLINT_ARG_LINELENGTH "--linelength=120")
         set(CPPLINT_ARG_VERBOSE    "--verbose=1")
-        if(EXISTS "${PROJECT_SOURCE_DIR}/cpplint/cpplint.py")
+        if(EXISTS "${PROJECT_SOURCE_DIR}/lib/cpplint/cpplint.py")
             # add a cpplint target to the "all" target
             add_custom_target(cpplint
                 ALL
