@@ -75,7 +75,7 @@ time_t Time::diff(const time_t aStartTime, const time_t aEndTime) {
         deltaTime = aEndTime - aStartTime;
     } else {
         // 0 --- t2 --- t1 --- max
-        deltaTime = ((time_t)-1 - aStartTime) + 1 + aEndTime;
+        deltaTime = (static_cast<time_t>(-1) - aStartTime) + 1 + aEndTime;
     }
 
     return deltaTime;

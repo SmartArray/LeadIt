@@ -16,6 +16,7 @@
 
 /**
  * @brief Entry-point of the application, showing how to play with precise time ticks.
+ * @return process status code
  */
 int main() {
     using Utils::Time;

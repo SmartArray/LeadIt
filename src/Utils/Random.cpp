@@ -55,12 +55,13 @@ void Random::genString(char* str, size_t len) {
 
 // Initialize the random generator with the current time
 Random::Init::Init() {
-    std::srand(static_cast<unsigned int>(std::time(0)));
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
 }
 
 namespace Internals {
 
 /// Static initialization of the random generator, calling Init() before main()
+#pragma clang diagnostic ignored "-Wglobal-constructors"
 static Random::Init _mInit;
 
 } // namespace Internals

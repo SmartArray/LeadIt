@@ -8,7 +8,8 @@
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
  */
-#pragma once
+#ifndef SRC_UTILS_DATETIME_H_
+#define SRC_UTILS_DATETIME_H_
 
 namespace Utils {
 
@@ -43,3 +44,5 @@ struct DateTime {
 };
 
 } // namespace Utils
+
+#endif // SRC_UTILS_DATETIME_H_

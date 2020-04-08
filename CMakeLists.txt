@@ -59,7 +59,6 @@ else (MSVC)
     endif (CMAKE_COMPILER_IS_GNUCXX)
 endif (MSVC)
 
-
 # Link to googletest unit-test suite.
 option(LEADIT_RUN_TESTS "Run googletest unit-test suite." ON)
 if (LEADIT_RUN_TESTS)
@@ -68,6 +67,8 @@ if (LEADIT_RUN_TESTS)
     include_directories("${PROJECT_SOURCE_DIR}/lib/googletest/googletest/include")
 endif (LEADIT_RUN_TESTS)
 
+# Include the robin_hood hashmap
+include_directories("${PROJECT_SOURCE_DIR}/lib/")
 
 # Enable maximum Warning level for our own code (after the googletest lib)
 if (MSVC)
@@ -92,10 +93,10 @@ endif (MSVC)
 # List all sources/headers files
 set(source_files
  ${CMAKE_SOURCE_DIR}/src/Main.cpp
- ${CMAKE_SOURCE_DIR}/src/Utils/DateTime.cpp src/Utils/DateTime.h
- ${CMAKE_SOURCE_DIR}/src/Utils/Measure.cpp src/Utils/Measure.h
- ${CMAKE_SOURCE_DIR}/src/Utils/Random.cpp src/Utils/Random.h
- ${CMAKE_SOURCE_DIR}/src/Utils/Time.cpp src/Utils/Time.h
+ ${CMAKE_SOURCE_DIR}/src/Utils/DateTime.cpp ${CMAKE_SOURCE_DIR}/src/Utils/DateTime.h
+ ${CMAKE_SOURCE_DIR}/src/Utils/Measure.cpp ${CMAKE_SOURCE_DIR}/src/Utils/Measure.h
+ ${CMAKE_SOURCE_DIR}/src/Utils/Random.cpp ${CMAKE_SOURCE_DIR}/src/Utils/Random.h
+ ${CMAKE_SOURCE_DIR}/src/Utils/Time.cpp ${CMAKE_SOURCE_DIR}/src/Utils/Time.h
  ${CMAKE_SOURCE_DIR}/src/Utils/Utils.h
 )
 source_group(src     FILES ${source_files})
@@ -131,9 +132,7 @@ option(LEADIT_RUN_CPPLINT "Run cpplint.py tool for Google C++ StyleGuide." ON)
 if (LEADIT_RUN_CPPLINT)
     find_package(PythonInterp 2.6)
     if (PYTHONINTERP_FOUND)
-        set(CPPLINT_ARG_LINELENGTH "--linelength=120")
         set(CPPLINT_ARG_VERBOSE    "--verbose=1")
-        set(CPPLINT_ARG_FILTER "--filter=-whitespace/comments")
         if(EXISTS "${PROJECT_SOURCE_DIR}/lib/cpplint/cpplint.py")
             # add a cpplint target to the "all" target
             add_custom_target(cpplint

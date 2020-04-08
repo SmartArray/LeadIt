@@ -8,7 +8,8 @@
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
  */
-#pragma once
+#ifndef SRC_UTILS_RANDOM_H_
+#define SRC_UTILS_RANDOM_H_
 
 #include <cstddef>  // size_t
 #include <cstdint>  // size_t
@@ -22,7 +23,7 @@ namespace Utils {
  * Getting various type of random data.
  */
 class Random {
-public:
+ public:
     /**
      * @brief Generate an integer between 0 and aMax (<= RAND_MAX).
      *
@@ -61,7 +62,7 @@ public:
      * @brief Initializer of the random generator
      */
     class Init {
-    public:
+     public:
         /**
          * @brief Initialize the random generator with the current time
          */
@@ -74,3 +75,4 @@ public:
 
 } // namespace Utils
 
+#endif // SRC_UTILS_RANDOM_H_

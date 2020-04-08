@@ -53,32 +53,32 @@ public:
 #endif
     {}
 
-    /// True if using a known compiler
+    /// @return true, if a known compiler was used
     inline bool isValid() const {
         return mbIsValid;
     }
 
-    /// Compiler's name (GCC, Clang or MSVC)
+    /// @return Compiler's name (GCC, Clang or MSVC)
     inline const std::string& getName() const {
         return mName;
     }
 
-    /// Short version string (for instance "3.8.0" or "1900")
+    /// @return Short version string (for instance "3.8.0" or "1900")
     inline const std::string& getVersion() const {
         return mVersion;
     }
 
-    /// Full version string (for instance "3.8.0 (tags/RELEASE_380/final)" or "150020706")
+    /// @return Full version string (for instance "3.8.0 (tags/RELEASE_380/final)" or "150020706")
     inline const std::string& getVersionFull() const {
         return mVersionFull;
     }
 
-    /// Integer version (for instance 30800 or 1900)
+    /// @return Integer version (for instance 30800 or 1900)
     inline int getVersionInt() const {
         return mVersionInt;
     }
 
-    /// Compose description with compiler's name and full version string
+    /// @return Compose description with compiler's name and full version string
     inline std::string formatDescription() const {
         return Formatter() << mName << " " << mVersionFull;
     }

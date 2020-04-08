@@ -8,7 +8,8 @@
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
  */
-#pragma once
+#ifndef SRC_UTILS_TIME_H_
+#define SRC_UTILS_TIME_H_
 
 #include <ctime>    // time_t
 
@@ -23,7 +24,7 @@ namespace Utils {
  * @see #Utils::Measure
  */
 class Time {
-public:
+ public:
     /**
      * @brief Get tick in microseconds.
      *
@@ -50,3 +51,5 @@ public:
 };
 
 } // namespace Utils
+
+#endif // SRC_UTILS_TIME_H_

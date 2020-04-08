@@ -8,7 +8,8 @@
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
  */
-#pragma once
+#ifndef SRC_UTILS_MEASURE_H_
+#define SRC_UTILS_MEASURE_H_
 
 #include <ctime>    // time_t
 
@@ -21,7 +22,7 @@ namespace Utils {
  * @see #Utils::Time
  */
 class Measure {
-public:
+ public:
     /**
      * @brief Constructor measure and save the first time tick.
      */
@@ -29,11 +30,14 @@ public:
 
     /**
      * @brief Measure a second time tick and return the difference since the first one.
+     * @return measured time
      */
     time_t diff();
 
-private:
+ private:
     time_t mStartTimeUs;    ///< First time measurement, from the constructor.
 };
 
 } // namespace Utils
+
+#endif // SRC_UTILS_MEASURE_H_

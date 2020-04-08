@@ -16,13 +16,24 @@
 
 namespace Utils {
 
-/// Tells if a std::map have a specific key (similar to std::map::count())
+/**
+ * @brief Tells if a Map has a specific key
+ * @param aMap input map
+ * @param aKey input key
+ * @return whether the key exists
+ */
 template <typename Map>
 bool hasKey(const Map& aMap, const std::string& aKey) {
     return (aMap.find(aKey) != aMap.end());
 }
 
-/// Tells if a std::map have a specific value
+/**
+ * @brief Tells if a Map has a specific value
+ * @param aMap input map
+ * @param aKey input key
+ * @param aValue input value
+ * @return whether the value exists
+ */
 template <typename Map>
 bool hasValue(const Map& aMap, const std::string& aKey, const std::string& aValue) {
     bool bHaveValue = false;
