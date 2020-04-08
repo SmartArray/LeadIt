@@ -1,7 +1,7 @@
 /**
- * @file    Main.cpp
+ * @file    Example.cpp
  * @ingroup LeadIt
- * @brief   A simple skeleton for C++ development with CMake and Google Test.
+ * @brief   A simple skeleton for the high performance Cpp-Leaderboard.
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  * Copyright (c) 2020 Yoshi Jäger (yoshi@jaeger.berlin)
@@ -13,6 +13,9 @@
 #include <cstdio>
 
 #include "Utils/Time.h"
+
+#include "REST.h"
+#include "Core.h"
 
 /**
  * @brief Entry-point of the application, showing how to play with precise time ticks.

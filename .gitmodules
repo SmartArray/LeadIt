@@ -4,3 +4,6 @@
 [submodule "lib/cpplint"]
 	path = lib/cpplint
 	url = https://github.com/SRombauts/cpplint.git
+[submodule "lib/pistache"]
+	path = lib/pistache
+	url = https://github.com/oktal/pistache.git

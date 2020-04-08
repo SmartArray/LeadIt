@@ -90,10 +90,13 @@ else (MSVC)
 endif (MSVC)
 
 add_subdirectory(lib/cpp-btree)
+add_subdirectory(lib/pistache)
 
 # List all sources/headers files
 set(source_files
- ${CMAKE_SOURCE_DIR}/src/Main.cpp
+ ${CMAKE_SOURCE_DIR}/src/Example.cpp
+ ${CMAKE_SOURCE_DIR}/src/REST.cpp ${CMAKE_SOURCE_DIR}/src/REST.h
+ ${CMAKE_SOURCE_DIR}/src/Core.cpp ${CMAKE_SOURCE_DIR}/src/Core.h
  ${CMAKE_SOURCE_DIR}/src/Utils/DateTime.cpp ${CMAKE_SOURCE_DIR}/src/Utils/DateTime.h
  ${CMAKE_SOURCE_DIR}/src/Utils/Measure.cpp ${CMAKE_SOURCE_DIR}/src/Utils/Measure.h
  ${CMAKE_SOURCE_DIR}/src/Utils/Random.cpp ${CMAKE_SOURCE_DIR}/src/Utils/Random.h
