@@ -27,6 +27,21 @@ if (MSVC)
     set(DEV_NULL                "NUL")
     set(SYSTEM_LIBRARIES        "")
     add_definitions(/D_CRT_SECURE_NO_WARNINGS)
+elseif (APPLE)
+    set(CPPLINT_ARG_OUTPUT      "--output=eclipse")
+    set(CPPCHECK_ARG_TEMPLATE   "--template=gcc")
+    set(DEV_NULL                "/dev/null")
+    set(CMAKE_CXX_FLAGS_T, "${-DNORT}")
+
+    # C++11
+    add_compile_options(-std=c++0x) # equivalent to "-std=c++11" but backward compatible for GCC 4.6 on Travic-CI
+    # Stack protection
+    add_compile_options(-fstack-protector-all)
+
+    if (CMAKE_COMPILER_IS_GNUCXX)
+        # For stacktraces:
+        add_compile_options(-rdynamic)
+    endif (CMAKE_COMPILER_IS_GNUCXX)    
 else (MSVC)
     set(CPPLINT_ARG_OUTPUT      "--output=eclipse")
     set(CPPCHECK_ARG_TEMPLATE   "--template=gcc")
@@ -57,7 +72,7 @@ endif (LEADIT_RUN_TESTS)
 # Enable maximum Warning level for our own code (after the googletest lib)
 if (MSVC)
     # Set warning level to maximum (instead of default /W3)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 ${CMAKE_CXX_FLAGS_T}")
 else (MSVC)
     if (CMAKE_COMPILER_IS_GNUCXX)
         # Enable maximum of Warnings for GCC:
@@ -118,11 +133,12 @@ if (LEADIT_RUN_CPPLINT)
     if (PYTHONINTERP_FOUND)
         set(CPPLINT_ARG_LINELENGTH "--linelength=120")
         set(CPPLINT_ARG_VERBOSE    "--verbose=1")
+        set(CPPLINT_ARG_FILTER "--filter=-whitespace/comments")
         if(EXISTS "${PROJECT_SOURCE_DIR}/lib/cpplint/cpplint.py")
             # add a cpplint target to the "all" target
             add_custom_target(cpplint
                 ALL
-                COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/cpplint/cpplint.py ${CPPLINT_ARG_OUTPUT} ${CPPLINT_ARG_LINELENGTH} ${CPPLINT_ARG_VERBOSE} ${source_files}
+                COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/lib/cpplint/cpplint.py ${CPPLINT_ARG_OUTPUT} ${CPPLINT_ARG_LINELENGTH} ${CPPLINT_ARG_VERBOSE} ${CPPLINT_ARG_FILTER} ${source_files}
             )
             message(STATUS "LEADIT_RUN_CPPLINT        ON")
         else ()
@@ -138,7 +154,7 @@ endif (LEADIT_RUN_CPPLINT)
 # Run cppcheck C++ static analysis tool.
 option(LEADIT_RUN_CPPCHECK "Run cppcheck C++ static analysis tool." ON)
 if (LEADIT_RUN_CPPCHECK)
-    find_program(CPPCHECK_EXECUTABLE NAMES lib/cppcheck)
+    find_program(CPPCHECK_EXECUTABLE NAMES cppcheck)
     if (CPPCHECK_EXECUTABLE)
         # add a cppcheck target to the "all" target
         add_custom_target(cppcheck

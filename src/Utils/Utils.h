@@ -17,7 +17,8 @@
  * @brief   Shared utilities.
  * @ingroup Utils Utils
  */
-#pragma once
+#ifndef SRC_UTILS_UTILS_H_
+#define SRC_UTILS_UTILS_H_
 
 /**
  * @brief   Shared utilities.
@@ -50,7 +51,7 @@ namespace Utils {
  * @brief nullptr_t is the type of the null pointer literal, nullptr.
 */
 class nullptr_t {   // NOLINT
-public:
+ public:
     template<typename T>
     inline operator T* () const {       ///< convertible to any type of null non-member pointer...
         return 0;
@@ -61,7 +62,7 @@ public:
         return 0;
     }
 
-private:
+ private:
     void operator&() const;  ///< Can't take address of nullptr NOLINT
 };
 
@@ -76,3 +77,5 @@ const nullptr_t nullptr = {};
 #if _MSC_VER
 #define snprintf _snprintf
 #endif
+
+#endif  // SRC_UTILS_UTILS_H_
